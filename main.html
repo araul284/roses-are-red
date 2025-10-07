@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Greet</title>
+    <link rel="stylesheet" href="assets/css/style.css" />
+    <script src="assets/js/script.js" defer></script>
+</head>
+<body>
+    <div class="main-section" id="main">
+    <p>Add a Book</p>
+    <input type="text" id="bookName" placeholder="Enter book name" />
+    <button class="add-book" onclick="addBookToCart()">Add to cart</button>
+  </div>
+  <script>
+function addBookToCart() {
+    const bookName = document.getElementById('bookName').value.trim();
+    if (bookName) {
+        localStorage.setItem('bookName', bookName);
+        location.href = 'cartPage.html';
+    } else {
+        alert('Please enter a book name.');
+    }
+}
+</script>
+</body>
+</html>

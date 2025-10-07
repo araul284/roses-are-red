@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Receipt</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            background: #faf7f3;
+            font-family: monospace;
+            padding: 20px;
+        }
+        .receipt {
+            width: 220px;
+            background: #fff;
+            border: 1px solid #ddd;
+            padding: 15px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        .header {
+            text-align: center;
+            border-bottom: 1px dashed #ccc;
+            padding-bottom: 10px;
+            margin-bottom: 10px;
+        }
+        .header h2 {
+            margin: 0;
+            font-size: 18px;
+        }
+        .details, .payment, .footer {
+            font-size: 12px;
+        }
+        .details {
+            margin-bottom: 10px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 12px;
+            margin-bottom: 10px;
+        }
+        th, td {
+            border-bottom: 1px solid #eee;
+            padding: 5px;
+            text-align: left;
+        }
+        .totals {
+            text-align: right;
+            font-size: 13px;
+            margin-bottom: 10px;
+        }
+        .payment {
+            border-top: 1px dashed #ccc;
+            padding-top: 10px;
+        }
+        .footer {
+            text-align: center;
+            color: #666;
+            margin-top: 15px;
+        }
+    </style>
+</head>
+<body>
+    <div class="receipt">
+        <div class="header">
+            <h2>Books and Roses Day</h2>
+            <p>221A Library Lane, Kolkata</p>
+            <p>Phone: +91 98765 43210</p>
+            <p>GSTIN: 27BRDAY2025F1M33</p>
+        </div>
+        <div class="details">
+            <p><strong>Receipt No:</strong> BRD-${receiptNo}</p>
+            <p><strong>Date:</strong> ${date}</p>
+            <p><strong>Served By:</strong>The Rosekeeper</p>
+        </div>
+        <table>
+            <thead>
+                <tr>
+                    <th>Item</th>
+                    <th>Qty</th>
+                    <th>Price (₹)</th>
+                    <th>Total (₹)</th>
+                </tr>
+            </thead>
+            <tbody id="itemRows"></tbody>
+        </table>
+        <div class="totals">
+            <p><strong>Subtotal:</strong>₹${subtotal.toFixed(2)}</p>
+            <p><strong>GST: (5%)</strong>₹${gst}</p>
+            <p><strong>Total:</strong>₹${total}</p>
+        </div>
+        <div class="payment">
+            <p><strong>Payment Mode:</strong> UPI</p>
+        </div>
+        <div class="footer">
+            <p>Thank you for celebrating Books & Roses Day!</p>
+            <p>May your stories bloom beautifully</p>
+        </div>
+    </div>
+    <script>
+    // Get book name from localStorage
+    const bookName = localStorage.getItem('bookName') || 'Book';
+
+    // Items purchased
+    const items = [
+        { name: bookName, qty: 1, price: 350 },
+        { name: 'Rose Bouquet', qty: 1, price: 120 },
+        { name: 'Chai', qty: 1, price: 40 },
+        { name: 'Bookmark', qty: 1, price: 30 }
+    ];
+
+    // Build item rows
+    let itemRows = '';
+    let subtotal = 0;
+    items.forEach(item => {
+        const total = item.qty * item.price;
+        subtotal += total;
+        itemRows += `<tr>
+            <td>${item.name}</td>
+            <td>${item.qty}</td>
+            <td>₹${item.price}</td>
+            <td>₹${total}</td>
+        </tr>`;
+    });
+
+    // Calculate GST and total
+    const gst = (subtotal * 0.05).toFixed(2);
+    const total = (subtotal + parseFloat(gst)).toFixed(2);
+
+    // Fill table rows
+    document.getElementById('itemRows').innerHTML = itemRows;
+
+    // Fill other fields
+    document.querySelector('.details').innerHTML = `
+        <p><strong>Receipt No:</strong> BRD-${Math.floor(Math.random() * 10000)}</p>
+        <p><strong>Date:</strong> ${new Date().toLocaleDateString()}</p>
+        <p><strong>Served By:</strong>The Rosekeeper</p>
+    `;
+    document.querySelector('.totals').innerHTML = `
+        <p><strong>Subtotal:</strong>₹${subtotal.toFixed(2)}</p>
+        <p><strong>GST: (5%)</strong>₹${gst}</p>
+        <p><strong>Total:</strong>₹${total}</p>
+    `;
+</script>
+</body>
+</html>

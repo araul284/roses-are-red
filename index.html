@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Books & Roses Day</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="greet" id="greet">
+    <h3>Happy International</h3>
+    <p>Books & Roses</p>
+    <h3>Day to you!</h3>
+    <button class="close-greet" onclick="closeGreet()">Claim your gift here!</button>
+  </div>
+  
+  <div class="bouquet" id="bouquet">
+    <h3>You've found a... </h3>
+    <img src="rose-bouquet.png" alt="Rose Bouquet" />
+    <button class="close-bouquet" onclick="closeBouquet()">Add a book</button>
+  </div>
+
+  <div class="main-section" id="main">
+    <p>Add a Book</p>
+    <input type="text" id="bookName" placeholder="Enter book name" />
+    <button class="add-book" onclick="goToCart()">Add to cart</button>
+  </div>
+
+  <div class="cart-page" id="cartPage">
+    <h3>Book Pending!</h3>
+    <img src="book.png" alt="Book" class="book-animation" />
+    <button class="rec" onclick="closeCart()">get your receipt</button>
+  </div>
+  
+  <div class ="receipt" id="receipt">
+    <div class="receipt-box">
+      <p>Receipt</p>
+      <p>———————————————</p>
+      <p>Date: <span id="receiptDate"></span></p>
+      <p>Transaction ID: <span id="transactionId"></span></p>
+      <p>———————————————</p>
+      <p>ITEM     (QTY)</p>
+      <p>Book Added: <span id="bookTitle"></span> (01)</p>
+      <p>———————————————</p>
+      <p class="footer">Enjoy your book and bouquet!</p>
+    </div>
+  </div>
+
+  <script src="scripts.js"></script>
+</body>
+</html>
