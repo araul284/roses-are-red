@@ -2,7 +2,7 @@
 
 body {
   margin: 0;
-  height: 100vh;
+  min-height: 100vh;
   display: flex;
   background-color: #f6f0e2;
   color: #8b0101;
@@ -11,12 +11,10 @@ body {
 }
 
 .greet {
-  height: 100vh;
   display: flex;
   align-items: center;
   justify-content: center;
   flex-direction: column;
-  align-items: center;
 }
 
 .greet h3 {
@@ -40,8 +38,7 @@ body {
   display: block;
   justify-content: center;
   align-self: center;
-  margin: auto;
-  margin-top: 5%;
+  margin: 20px auto 0 auto;
 }
 
 .close-greet {
